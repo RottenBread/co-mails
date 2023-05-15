@@ -6,7 +6,11 @@
         <link rel="stylesheet"  href="{{url_for('static', filename='css/main.css')}}"/>
     </head>
 <body>
-    <h1>메일 내용 긁어오기</h1>
-    <h2 class = "mail-naver">{{ data1 }}</h2>
+    <h1>메일 제목 긁어오기</h1>
+    <ul class = "mail-naver">
+        {% for value in data1 %}
+        <li>{{ value }}</li>
+        {% endfor %}
+    </h2>
 </body>
 </html>
