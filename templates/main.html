@@ -9,8 +9,13 @@
     <h1>메일 제목 긁어오기</h1>
     <ul class = "mail-naver">
         {% for value in data1 %}
-        <li>{{ value }}</li>
+        <li><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
         {% endfor %}
-    </h2>
+    </ul>
+    <ul class = "mail-naver">
+        {% for value in data0 %}
+        <li><img src="{{ url_for('static', filename='image/kakao.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
