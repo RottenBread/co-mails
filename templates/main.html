@@ -6,16 +6,26 @@
         <link rel="stylesheet"  href="{{url_for('static', filename='css/main.css')}}"/>
     </head>
 <body>
-    <h1>메일 제목 긁어오기</h1>
-    <ul class = "mail-naver">
-        {% for value in data1 %}
-        <li><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
-        {% endfor %}
-    </ul>
-    <ul class = "mail-naver">
-        {% for value in data0 %}
-        <li><img src="{{ url_for('static', filename='image/kakao.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
-        {% endfor %}
-    </ul>
+    <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}">
+    <div class = "naver">
+        <button type="button" class="button_naver" style="font-size: 15pt;">NAVER</button> 
+        <span class = "connected_id">&nbsp;연결된 계정 : {{ data2 }}</span>
+        <ul class = "mail-naver">
+            {% for value in data1 %}
+            <li><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div class = "google">
+        <button type="button" class="button_google" style="font-size: 15pt;">GOOGLE</button>
+        <span class = "connected_id">&nbsp;연결된 계정 : {{ data2 }}</span>
+        <ul class = "mail-google">
+            {% for value in data1 %}
+            <li><img src="{{ url_for('static', filename='image/google.png') }}" style="width:15px; height:15px;"> {{ value }} </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
