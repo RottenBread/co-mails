@@ -5,7 +5,7 @@ from email.header import decode_header, make_header
 from flask import Flask,render_template
 
 # POP3 데이터
-pop3_server = 'pop.naver.com'
+pop3_server = 'pop..com'
 username = ''
 password = ''
 
@@ -17,9 +17,19 @@ server = poplib.POP3_SSL(pop3_server, port=995, context=context)
 server.user(username)
 server.pass_(password)
 
-num_messages, mailbox_size = server.stat()
+'''num_messages, mailbox_size = server.stat()'''
 
-# 가장 최근에 도착한 메시지 10개 가져오기
+kakao = []
+
+server.set_debuglevel(1)
+server.max_message_size = 100 * 1024 * 1024
+
+messages = len(server.list())
+
+for message in range (messages):
+    kakao.append(message)
+
+'''# 가장 최근에 도착한 메시지 10개 가져오기
 messages = []
 msg = []
 for i in range(num_messages, num_messages - 10, -1):
@@ -34,7 +44,7 @@ for message in messages:
     decoded_subject = decode_header(subject)[0][0]
     if isinstance(decoded_subject, bytes):
         decoded_subject = decoded_subject.decode()
-    msg.append(decoded_subject)
+    msg.append(decoded_subject)'''
 
 # Flask
 app = Flask(__name__)
@@ -42,9 +52,9 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     naver = []
-    for i in range(0, 10, 1):
-        naver.append(f"{msg[i]}")
-    return render_template('main.html', data1=naver)
+    '''for i in range(0, 10, 1):
+        naver.append(f"{msg[i]}")'''
+    return render_template('main.html', data0=kakao)
 
 
 if __name__ == '__main__':
