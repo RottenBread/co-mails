@@ -1,2 +1,6 @@
 # co-mails
-website that collects mail in one place
+2023년 웹프로그래밍 기말고사
+메일을 한 곳에서 볼수 있는 사이트
+
+# 사용법
+main.py 를 실행한 후 http://127.0.0.1:5000 로 접속하여 사용
