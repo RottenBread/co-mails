@@ -3,11 +3,10 @@ import ssl
 import email
 from email.header import decode_header, make_header
 from flask import Flask,render_template
+from email.parser import BytesParser
 
-# POP3 데이터
-pop3_server = 'pop..com'
-username = ''
-password = ''
+# POP3 데이
+naver_username = username
 
 # SSL 연결
 context = ssl.create_default_context()
@@ -17,21 +16,12 @@ server = poplib.POP3_SSL(pop3_server, port=995, context=context)
 server.user(username)
 server.pass_(password)
 
-'''num_messages, mailbox_size = server.stat()'''
+num_messages, mailbox_size = server.stat()
 
-kakao = []
 
-server.set_debuglevel(1)
-server.max_message_size = 100 * 1024 * 1024
-
-messages = len(server.list())
-
-for message in range (messages):
-    kakao.append(message)
-
-'''# 가장 최근에 도착한 메시지 10개 가져오기
+# 가장 최근에 도착한 메시지 10개 가져오기
 messages = []
-msg = []
+naver_msg = []
 for i in range(num_messages, num_messages - 10, -1):
     _, lines, _ = server.retr(i)
     message_content = b'\n'.join(lines).decode()
@@ -44,17 +34,45 @@ for message in messages:
     decoded_subject = decode_header(subject)[0][0]
     if isinstance(decoded_subject, bytes):
         decoded_subject = decoded_subject.decode()
-    msg.append(decoded_subject)'''
+    naver_msg.append(decoded_subject)
+
+
+# POP3 데이터
+google_username = username
+
+# SSL 연결
+context = ssl.create_default_context()
+server = poplib.POP3_SSL(pop3_server, port=995, context=context)
+
+# 서버 연결
+server.user(username)
+server.pass_(password)
+
+
+# 가장 최근에 도착한 메시지 10개 가져오기
+messages = []
+google_msg = []
+message_count = len(server.list()[1])
+start_index = max(1, message_count - 9)
+
+for i in range(start_index, message_count + 1):
+    _, msg_lines, _ = server.retr(i)
+    msg_content = b'\r\n'.join(msg_lines)
+    msg = BytesParser().parsebytes(msg_content)
+
+    # 제목 디코딩
+    subject = msg['Subject']
+    decoded_subject = decode_header(subject)[0][0]
+    if isinstance(decoded_subject, bytes):
+        decoded_subject = decoded_subject.decode('utf-8')
+    google_msg.append(decoded_subject)
 
 # Flask
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    naver = []
-    '''for i in range(0, 10, 1):
-        naver.append(f"{msg[i]}")'''
-    return render_template('main.html', data0=kakao)
+    return render_template('main.html', data1=naver_msg, data2=naver_username, data3=google_msg, data4=google_username)
 
 
 if __name__ == '__main__':
@@ -62,3 +80,4 @@ if __name__ == '__main__':
     app.run()
 
 # 여기까지 Flask
+
