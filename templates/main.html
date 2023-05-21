@@ -7,28 +7,48 @@
     </head>
 <body>
     <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}">
+    <div class = "info" style = "text-align: center;" onclick="clickTitle()"> 본 사이트는 전체 화면에 최적화 되어 있습니다. | 개발자 깃허브 </div>
     <div class = "mails">
         <div class = "naver">
-            <button type="button" class="button_naver" style="font-size: 15pt;">NAVER</button> 
+            <button type="button" class="button_naver" style="font-size: 15pt;" onclick="clickNaver()">NAVER</button> 
             <span class = "connected_id">&nbsp;연결된 계정 : {{ data2 }}</span>
             <ul class = "mail-naver">
-                {% for value in data1 %}
-                <div class = "mail-info"><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> {{ value }} </div>
+                {% for i in range (10) %}
+                <div class = "mail-info"><p><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> <span class = "mail-sender">{{ data1[i]['sender'] }}</span> : {{ data1[i]['subject'] }} </p> </div>
                 {% endfor %}
             </ul>
         </div>
-        <br>
-        <br>
         <div class = "google">
-            <button type="button" class="button_google" style="font-size: 15pt;">GOOGLE</button>
+            <button type="button" class="button_google" style="font-size: 15pt;" onclick="clickGoogle()">GOOGLE</button>
             <span class = "connected_id">&nbsp;연결된 계정 : {{ data4 }}</span>
             <ul class = "mail-google">
-                {% for value in data3 %}
-                <div class = "mail-info"><img src="{{ url_for('static', filename='image/google.png') }}" style="width:15px; height:15px;"> {{ value }} </div>
+                {% for i in range (10) %}
+                <div class = "mail-info"><p><img src="{{ url_for('static', filename='image/google.png') }}" style="width:15px; height:15px;"> <span class = "mail-sender">{{ data3[i]['sender'] }}</span> : {{ data3[i]['subject'] }} </p> </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class = "mails2">
+        <div class = "kakao">
+            <button type="button" class="button_kakao" style="font-size: 15pt;" onclick="clickKakao()">KAKAO</button> 
+            <span class = "connected_id">&nbsp;연결된 계정 : {{ data6 }}</span>
+            <ul class = "mail-kakao">
+                {% for i in range (10) %}
+                <div class = "mail-info"><p><img src="{{ url_for('static', filename='image/kakao.png') }}" style="width:15px; height:15px;"> <span class = "mail-sender">{{ data5[9-i]['sender'] }}</span> : {{ data5[9-i]['subject'] }} </p> </div>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class = "daum">
+            <button type="button" class="button_daum" style="font-size: 15pt;" onclick="clickDaum()">DAUM</button>
+            <span class = "connected_id">&nbsp;연결된 계정 : {{ data8 }}</span>
+            <ul class = "mail-daum">
+                {% for i in range (10) %}
+                <div class = "mail-info"><p><img src="{{ url_for('static', filename='image/daum.png') }}" style="width:15px; height:15px;"> <span class = "mail-sender">{{ data7[9-i]['sender'] }}</span> : {{ data7[9-i]['subject'] }} </p> </div>
                 {% endfor %}
             </ul>
         </div>
     </div>
 </body>
 </html>
-
