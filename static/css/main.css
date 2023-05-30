@@ -19,11 +19,7 @@ body {
 #logo:hover {
     transform : scale(1.2);
     transition: all 300ms ease-in;
-}
-
-#logo:unhover {
-    transform : scale(1);
-    transition: all 300ms ease-in;
+    cursor: pointer;
 }
 
 .button_naver {
