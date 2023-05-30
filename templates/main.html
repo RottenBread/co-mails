@@ -6,8 +6,15 @@
         <link rel="stylesheet"  href="{{url_for('static', filename='css/main.css')}}"/>
     </head>
 <body>
-    <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}"  onclick="clickLogo()">
-    <div class = "info" style = "text-align: center;" onclick="clickTitle()"> 본 사이트는 전체 화면에 최적화 되어 있습니다. | 개발자 깃허브 </div>
+    <a name="up"></a>
+    <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}">
+    <div class = "info" style = "text-align: center;"> 
+        <script>
+            document.write(array[0] + " | ");
+            document.write(array[1] + " | ");
+            document.write(array[2]);
+        </script>
+    </div>
     <div class = "mails">
         <div class = "naver">
             <button type="button" class="button_naver" style="font-size: 15pt;" onclick="clickNaver()">NAVER</button> 
@@ -40,6 +47,7 @@
                 {% endfor %}
             </ul>
         </div>
+        <a name="down"></a>
         <div class = "daum">
             <button type="button" class="button_daum" style="font-size: 15pt;" onclick="clickDaum()">DAUM</button>
             <span class = "connected_id">&nbsp;연결된 계정 : {{ data8 }}</span>
@@ -49,6 +57,13 @@
                 {% endfor %}
             </ul>
         </div>
+    </div>
+    <br>
+    <div class="float">
+        <a href="#up"><img src="{{ url_for('static', filename='image/down.png') }}" style="width:60px; height:30px; transform:scaleY(-1);"></a>
+        <a href="#down"><img src="{{ url_for('static', filename='image/down.png') }}" style="width:60px; height:30px;"></a>
+        <br>
+        <a onclick="location.href='about.html'"><img src="{{ url_for('static', filename='image/home.png') }}" style="width:40px; height:40px;"></a>
     </div>
 </body>
 </html>
