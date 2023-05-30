@@ -13,3 +13,7 @@ function clickDaum() {
 function clickKakao() {
 	window.location.href = "https://mail.kakao.com/#ALL";
 }
+
+function clickLogo() {
+	window.location.href = "https://github.com/RottenBread";
+}
