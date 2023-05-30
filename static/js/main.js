@@ -14,6 +14,4 @@ function clickKakao() {
 	window.location.href = "https://mail.kakao.com/#ALL";
 }
 
-function clickLogo() {
-	window.location.href = "https://github.com/RottenBread";
-}
+var array = ["본 사이트는 전체 화면에 최적화 되어 있습니다.", "로고를 클릭하면 개발자 정보가 나옵니다.", "웹프로그래밍 기말고사"]
