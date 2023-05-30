@@ -17,8 +17,77 @@ body {
 }
 
 #logo:hover {
-    transform : scale(1.2);
+    transform : scale(1.1);
     transition: all 300ms ease-in;
+    cursor: pointer;
+}
+
+.button_github {
+    position: top;
+    top:50%;
+    background-color:white;
+    color: black;
+    box-shadow: 0px 0px 2px 2px rgb(211,211,211);
+    border:none;
+    border-radius: 8px;
+    min-height: 30px; 
+    min-width: 120px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button_javas {
+    position: top;
+    top:50%;
+    background-color:yellow;
+    color: black;
+    box-shadow: 0px 0px 2px 2px rgb(211,211,211);
+    border:none;
+    border-radius: 8px;
+    min-height: 30px; 
+    min-width: 120px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button_python {
+    position: top;
+    top:50%;
+    background-color:lightskyblue;
+    color: black;
+    box-shadow: 0px 0px 2px 2px rgb(211,211,211);
+    border:none;
+    border-radius: 8px;
+    min-height: 30px; 
+    min-width: 120px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button_html {
+    position: top;
+    top:50%;
+    background-color:orange;
+    color: white;
+    box-shadow: 0px 0px 2px 2px rgb(211,211,211);
+    border:none;
+    border-radius: 8px;
+    min-height: 30px; 
+    min-width: 120px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.button_univ {
+    position: top;
+    top:50%;
+    background-color:red;
+    color: white;
+    box-shadow: 0px 0px 2px 2px rgb(211,211,211);
+    border:none;
+    border-radius: 8px;
+    min-height: 30px; 
+    min-width: 120px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -95,3 +164,12 @@ body {
     height: auto;
     float: left;
 }
+
+.float {
+    position: fixed; 
+    right: 50%; 
+    top: 180px; 
+    margin-right: -720px;
+    text-align:center;
+    width: 120px;
+  }
