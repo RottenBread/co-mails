@@ -6,14 +6,14 @@
         <link rel="stylesheet"  href="{{url_for('static', filename='css/main.css')}}"/>
     </head>
 <body>
-    <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}">
+    <img id = "logo" src = "{{ url_for('static', filename='image/logo.png') }}"  onclick="clickLogo()">
     <div class = "info" style = "text-align: center;" onclick="clickTitle()"> 본 사이트는 전체 화면에 최적화 되어 있습니다. | 개발자 깃허브 </div>
     <div class = "mails">
         <div class = "naver">
             <button type="button" class="button_naver" style="font-size: 15pt;" onclick="clickNaver()">NAVER</button> 
             <span class = "connected_id">&nbsp;연결된 계정 : {{ data2 }}</span>
             <ul class = "mail-naver">
-                {% for i in range (10) %}
+                {% for i in range (9, -1, -1) %}
                 <div class = "mail-info"><p><img src="{{ url_for('static', filename='image/naver.png') }}" style="width:15px; height:15px;"> <span class = "mail-sender">{{ data1[i]['sender'] }}</span> : {{ data1[i]['subject'] }} </p> </div>
                 {% endfor %}
             </ul>
