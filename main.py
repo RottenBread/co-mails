@@ -1,4 +1,4 @@
-import poplib
+import getpass, poplib
 import ssl
 import re
 from email.header import decode_header
@@ -8,9 +8,12 @@ from email.parser import BytesParser
 pattern = '\<[^)]*\>'
 
 def getMeg(pop3_server, username, password):
+    # SSL 연결
     context = ssl.create_default_context()
+    poplib._MAXLINE = 20480
     server = poplib.POP3_SSL(pop3_server, port=995, context=context)
 
+    # 서버 연결
     server.user(username)
     server.pass_(password)
 
@@ -23,6 +26,7 @@ def getMeg(pop3_server, username, password):
         msg_content = b'\r\n'.join(msg_lines)
         msg = BytesParser().parsebytes(msg_content)
 
+        # 제목 디코딩
         subject = msg['Subject']
         if subject is None:
             subject = "광고 메일이거나 제목이 없는 메일입니다."
@@ -35,7 +39,7 @@ def getMeg(pop3_server, username, password):
                 decoded_subject = decoded_subject.decode('euc-kr')
         sender = msg['From']
         if sender is None:
-            sender = "(알수없음)"
+            sender = "알수없음"
         decoded_sender = decode_header(sender)[0][0]
 
         if isinstance(decoded_sender, bytes):
@@ -55,11 +59,11 @@ def getMeg(pop3_server, username, password):
 
     return result_msg, username
 
-    
-google_msg, google_username = getMeg("", "", "")
-daum_msg, daum_username = getMeg("", "", "")
-kakao_msg, kakao_username = getMeg("", "", "")
-naver_msg, naver_username = getMeg("", "", "")
+
+google_msg, google_username = getMeg("pop.gmail.com", "INPUT_YOUR_ADDRESS", "INPUT_YOUR_PASSWORD")
+daum_msg, daum_username = getMeg("pop.daum.net", "INPUT_YOUR_ADDRESS", "INPUT_YOUR_PASSWORD")
+kakao_msg, kakao_username = getMeg("pop.kakao.com", "INPUT_YOUR_ADDRESS", "INPUT_YOUR_PASSWORD")
+naver_msg, naver_username = getMeg("pop.naver.com", "INPUT_YOUR_ADDRESS", "INPUT_YOUR_PASSWORD")
 
 app = Flask(__name__)
 
@@ -67,6 +71,9 @@ app = Flask(__name__)
 def hello_world():
     return render_template('main.html', data1=naver_msg, data2=naver_username, data3=google_msg, data4=google_username, data5=kakao_msg, data6=kakao_username, data7=daum_msg, data8=daum_username)
 
+@app.route('/about.html')
+def getTicket():
+   return render_template('about.html')
 
 if __name__ == '__main__':
     app.debug = True
